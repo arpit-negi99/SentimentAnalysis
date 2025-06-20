@@ -11,7 +11,7 @@ from nltk.stem.porter import PorterStemmer
 # YouTube API Setup
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyDEzDS4bIEhebfDYmZ8RYAWOqwzkzz0h78"
+DEVELOPER_KEY =yourDeveloperKey
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
 ps = PorterStemmer()
