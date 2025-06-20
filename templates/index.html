@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Sentiment Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: lightslategrey;
+    }
+
+    h1 {
+      text-align: center;
+      color: red;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .thumbnail {
+      max-width: 100%;
+      height: auto;
+      border: 5px solid green;
+      border-radius: 5px;
+    }
+
+    .rating {
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>YouTube Video Sentiment Analysis</h1>
+
+  <div class="container">
+    <form method="POST">
+      <label for="video_id">Enter YouTube Video URL:</label>
+      <input type="text" id="video_id" name="video_id" required>
+      <button type="submit">Analyze</button>
+    </form>
+
+    <style>
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: red;
+        /* Change to red when hovered */
+        color: white;
+        /* Keep text white for readability */
+      }
+    </style>
+
+    {% if error_message %}
+    <div class="error-message" style="color: red; font-weight: bold;">
+      {{ error_message }}
+    </div>
+    {% endif %}
+
+    {% if video_details %}
+    <h2>Video Details</h2>
+    <p><strong>Title:</strong> {{ video_details.title }}</p>
+    <img src="{{ video_details.thumbnail_url }}" alt="Video Thumbnail" class="thumbnail">
+    <br><br>
+    {% endif %}
+
+
+    {% if rating is not none %}
+    <h3 class="rating">Sentiment-Based Rating: {{ rating }} / 5</h3>
+    {% endif %}
+
+    {% if video_details and rating is none %}
+    <p class="error">Rating feature is under development.</p>
+    {% endif %}
+  </div>
+</body>
+
+</html>
